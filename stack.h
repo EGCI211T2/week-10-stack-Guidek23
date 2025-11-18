@@ -21,7 +21,7 @@ void Stack::push(int x){
   NodePtr new_node=new NODE(x); //make new node
   if(new_node)
   {
-        new_node->get_next() = top;    // Link the new node to the current top
+        new_node->set_next(top);    // Link the new node to the current top
         top = new_node; // Update the top pointer to the new node
         size++;
    }
@@ -33,15 +33,17 @@ void Stack::push(int x){
 int Stack::pop(){
     if (top == NULL)
     {
-        cout << "The stack is empty.";
+        cout << "The stack is empty." << endl;
+        return -1;
     }
     else{
         NodePtr t=top;
         int value;
         value=t->get_value();
-        get_next();
+        top = top->get_next();
         size--;
-        delete t;
+        cout << "pop ";
+        delete t; //take it out of the stack
         return value;
 	//be careful of the empty stack!!!
     }
@@ -49,7 +51,11 @@ int Stack::pop(){
 
 Stack::~Stack(){
     //delete all remaning stack (i.e. pop all) 
-    
+        while (top != nullptr) {
+        NodePtr t = top;
+        top = top->get_next();
+        delete t;
+    }
 }
 
 
