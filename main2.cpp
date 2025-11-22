@@ -28,7 +28,7 @@ int main(int argc, char **argv){
 
         else if(c ==']' || c == '}') //check closing
       {
-        int topValue = s.pop();
+        int topValue = s.pop(); //in case of lone } or ]
         if (topValue == -1)
         {
           balanced = false;
@@ -38,8 +38,6 @@ int main(int argc, char **argv){
           char topChar = (char)topValue;
         if (c == '}' && topChar != '{') balanced = false;
         if (c == ']' && topChar != '[') balanced = false;
-        if (c == ')' && topChar != '(') balanced = false;
-
         if (!balanced)
           break;
       }
