@@ -13,28 +13,47 @@ int main(int argc, char **argv){
 
    */
 
-    for(i = 1; i < argc; i ++)
-     for(j=0;j<strlen(argv[i]);j++)
-     {
-      Stack s; //change node to char--->***
-      if(argv[i][j] =='[' || argv[i][j] == '{')
-      s.push(argv[i][j]);
-    else
+    for(i = 1; i < argc; i++)
     {
-      if(argv[i][j] ==']' || argv[i][j] == '}')
+          Stack s; //change node to char--->***
+          bool balanced = true;
+          char c;
+
+      for(j = 0; j < strlen(argv[i]); j++)
       {
-        char x=s.pop();
+          c = (argv[i][j]);
+
+        if(c =='[' || c == '{') //check opening
+        s.push(c);
+
+        else if(c ==']' || c == '}') //check closing
+      {
+        int topValue = s.pop();
+        if (topValue == -1)
+        {
+          balanced = false;
+          break;
+        }
+
+          char topChar = (char)topValue;
+        if (c == '}' && topChar != '{') balanced = false;
+        if (c == ']' && topChar != '[') balanced = false;
+        if (c == ')' && topChar != '(') balanced = false;
+
+        if (!balanced)
+          break;
       }
     }
+      
+      int leftover = s.pop();
+      if (leftover != -1)
+    balanced = false;
 
-       // Use stack to help with the parentheses
-
-
-
-
-
+    if (balanced)
+      cout << argv[i] << ": Balanced" << endl << endl;
+    else
+      cout << argv[i] << ": Not Balanced" << endl << endl;
   }
-
 
 
 
