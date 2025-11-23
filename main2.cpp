@@ -51,6 +51,7 @@ int main(int argc, char **argv){
       cout << argv[i] << ": Balanced" << endl << endl;
     else
       cout << argv[i] << ": Not Balanced" << endl << endl;
+    
   }
 
 
