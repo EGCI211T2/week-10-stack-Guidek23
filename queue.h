@@ -36,6 +36,24 @@ public:
     int front();
     void enqueue(int x);
     int dequeue();
+    void preview()
+    {
+        Node* cur = headPtr;
+        if (cur != nullptr)
+        {
+            cout << cur->data;
+            if (cur -> next != nullptr)
+            {
+             cur = cur -> next -> next;
+            }
+            else
+            {
+                cur = nullptr;
+            }
+        }
+        cout << endl;
+    }
+    
 
 
 };

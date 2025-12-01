@@ -6,10 +6,31 @@ using namespace std;
 
 int main(int argc, char **argv){
    int i, j;
-   int ID, qt;
+   int ID, qt, customer = 1, cost, money, payed;
+   int ordernum = 1;
    string menu;
    Queue food;
 
+   /*
+   //the preview at the beginning
+    for(i=1;i<argc;i++) 
+    {            
+      if(strcmp(argv[i],"x")==0) 
+      {  
+        ordernum++;
+      }
+    }
+    
+    for(i=1;i<ordernum;i++) 
+      {
+        //cout << "-----------------:" << ordernum;
+        cout << "The menu number is: ";
+        food.preview();
+      }
+*/
+  
+
+    //each order poping
     for(i=1;i<argc;i++) 
     {
        if(strcmp(argv[i],"x")==0) 
@@ -28,21 +49,41 @@ int main(int argc, char **argv){
                       {
                       case 1:
                         menu = "Ramen";
+                        cost = 100;
 
                         break;
                       case 2:
                         menu = "Somtum";
+                        cost = 20;
 
                         break;
                       case 3:
                         menu = "Fried Chicken";
+                        cost = 50;
+
                         break;
 
                       default:
                         menu = "No food, please try again";
                         break;
                     }
-                cout << "Popping menu " << menu << " qty " << quantity << endl;
+                cout << "Customer no: " << customer << endl;
+                customer++;
+                cout << menu << " qty " << quantity << endl;
+                money = cost * quantity;
+                cout << "You have to pay "<< money << endl;
+                int change = -1;
+                while (change < 0)
+                {
+                  cout << ":Cash:";
+                  cin >> payed;
+                  change = payed - money;
+                  if (change < 0)
+                  {
+                    cout << "please try again." << endl;
+                  }
+                }
+                cout << "Change is: " << change << endl << endl;
             }
          }
          else
